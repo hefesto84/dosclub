@@ -1,8 +1,18 @@
-#include <allegro.h>
+#include "rdengine.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	allegro_init();
+	RDEngine* engine = new RDEngine();
+
+	engine->Setup(640,480);
+
+	while(!engine->ShouldClose())
+	{
+		engine->Update();
+		engine->Render();
+		//engine->Rest(1);
+	}
+	
 	return 0;
 }
 
