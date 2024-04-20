@@ -99,6 +99,10 @@ SOURCE=.\rdengine.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\rdentity.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\rdplayer.cpp
 # End Source File
 # Begin Source File
@@ -112,6 +116,10 @@ SOURCE=.\rdviewport.cpp
 # Begin Source File
 
 SOURCE=.\rdengine.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\rdentity.h
 # End Source File
 # Begin Source File
 

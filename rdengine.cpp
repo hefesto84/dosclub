@@ -32,6 +32,7 @@ void RDEngine::Init(int width, int height)
 	buffer = create_bitmap(this->buffer_width, this->buffer_height);
 
 	init_player();
+	init_entity();
 	init_viewport();
 	
 }
@@ -60,7 +61,10 @@ void RDEngine::try_move_player()
 			if(player->x < this->screen_width/2) 
 				player->x+=player->speed;
 			else
+			{
 				offset_x +=player->speed;
+				entity->x -= player->speed;
+			}
 		}
 	}
 
@@ -73,7 +77,10 @@ void RDEngine::try_move_player()
 			if(player->x > this->screen_width/2) 
 				player->x-=player->speed; 
 			else 
+			{
 				offset_x -=player->speed;
+				entity->x += player->speed;
+			}
 		}
 	}
 
@@ -86,7 +93,10 @@ void RDEngine::try_move_player()
 			if(player->y < this->screen_height/2) 
 				player->y+=player->speed;
 			else
+			{
 				offset_y +=player->speed;	
+				entity->y -= player->speed;
+			}
 		}
 	}
 
@@ -99,7 +109,10 @@ void RDEngine::try_move_player()
 			if(player->y > this->screen_height/2) 
 				player->y-=player->speed;
 			else 
+			{
 				offset_y -=player->speed;	
+				entity->y += player->speed;
+			}
 		}
 	}
 }
@@ -108,6 +121,7 @@ void RDEngine::Render()
 {
 	masked_blit(tiles, buffer, offset_x, offset_y, 0, 0, this->screen_width, this->screen_height);
 	masked_blit(tiles, buffer, 0,0,player->x, player->y, this->tile_width, this->tile_height);
+	masked_blit(tiles, buffer, 32, 64, entity->x, entity->y, this->tile_width, this->tile_height);
 
 	blit(buffer, screen, 0,0,0,0,this->screen_width,this->screen_height);
 	
@@ -127,4 +141,9 @@ void RDEngine::init_viewport()
 void RDEngine::init_player()
 {
 	player = new RDPlayer(this->screen_width/2 - this->tile_width, this->screen_height/2 - this->tile_height);
+}
+
+void RDEngine::init_entity()
+{
+	entity = new RDEntity(100,100);
 }
