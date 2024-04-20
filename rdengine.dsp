@@ -115,6 +115,10 @@ SOURCE=.\rdviewport.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\rdconstants.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\rdengine.h
 # End Source File
 # Begin Source File

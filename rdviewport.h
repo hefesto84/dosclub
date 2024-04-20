@@ -1,3 +1,5 @@
+#include "rdconstants.h"
+
 class RDViewport
 {
 public:

@@ -4,7 +4,7 @@ int main(int argc, char *argv[])
 {
 	RDEngine* engine = new RDEngine();
 
-	engine->Init(640,480);
+	engine->Init();
 
 	while(!engine->ShouldClose())
 	{
