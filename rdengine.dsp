@@ -97,6 +97,14 @@ SOURCE=.\main.cpp
 
 SOURCE=.\rdengine.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\rdplayer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\rdviewport.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -104,6 +112,14 @@ SOURCE=.\rdengine.cpp
 # Begin Source File
 
 SOURCE=.\rdengine.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\rdplayer.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\rdviewport.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

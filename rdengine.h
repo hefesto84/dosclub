@@ -1,25 +1,32 @@
 #include <allegro.h>
+#include "rdviewport.h"
+#include "rdplayer.h"
 
 class RDEngine
 {
 private:
+	int screen_width;
+	int screen_height;
+	int buffer_width;
+	int buffer_height;
+	int offset_x;
+	int offset_y;
+	int tile_width;
+	int tile_height;
 	bool isQuit;
-	int width;
-	int height;
-	short offset_x;
-	short offset_y;
-	short max_offset_x;
-	short max_offset_y;
-	short movement_speed;
-	BITMAP* tiles;
-	BITMAP* buffer;
-	char debug_buffer[256];
-	void initBuffer();
-	void move_window();
-	void correct_window_coordinates();
+
+	BITMAP *buffer;
+	BITMAP *tiles;
+	BITMAP *playerTile;
+	RDViewport *viewport;
+	RDPlayer *player;
+
+	void init_viewport();
+	void init_player();
+	void try_move_player();
 public:
 	RDEngine();
-	void Setup(int width, int height);
+	void Init(int width, int height);
 	bool ShouldClose();
 	void Rest(int milliseconds);
 	void Update();

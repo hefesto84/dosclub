@@ -4,13 +4,13 @@ int main(int argc, char *argv[])
 {
 	RDEngine* engine = new RDEngine();
 
-	engine->Setup(640,480);
+	engine->Init(640,480);
 
 	while(!engine->ShouldClose())
 	{
 		engine->Update();
 		engine->Render();
-		//engine->Rest(1);
+		engine->Rest(5);
 	}
 	
 	return 0;

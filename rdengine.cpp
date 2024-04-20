@@ -1,35 +1,117 @@
-#include "stdio.h"
+#include <stdio.h>
 #include "rdengine.h"
 
 RDEngine::RDEngine(){}
 
-void RDEngine::Setup(int width, int height)
+void RDEngine::Init(int width, int height)
 {
-	this->width = width;
-	this->height = height;
+	this->screen_width = width;
+	this->screen_height = height;
+	this->buffer_width = this->screen_width;
+	this->buffer_height = this->screen_height;
+	this->offset_x = 0;
+	this->offset_y = 0;
+	this->tile_width = 32;
+	this->tile_height = 32;
 
-	offset_x = 0;
-	offset_y = 0;
-	isQuit = false;
-
-	movement_speed = 10;
+	
+	this->isQuit = false;
 
 	allegro_init();
 	install_keyboard();
 	install_timer();
 
 	set_color_depth(32);
-    
-	set_gfx_mode(GFX_AUTODETECT_WINDOWED,width,height,0,0);
 
-	tiles = load_bitmap("Debug/tiles.bmp",NULL);
+	set_gfx_mode(GFX_AUTODETECT_WINDOWED, this->screen_width, this->screen_height, 0, 0);
 
-	initBuffer();
+	tiles = load_bitmap("Debug/tiles.bmp", NULL);
+
+	playerTile = create_bitmap(this->tile_width,this->tile_height);
+
+	buffer = create_bitmap(this->buffer_width, this->buffer_height);
+
+	init_player();
+	init_viewport();
+	
 }
 
 bool RDEngine::ShouldClose()
 {
-	return isQuit;
+	return this->isQuit;
+}
+
+void RDEngine::Update()
+{
+	if(key[KEY_ESC]) isQuit = true;
+
+	try_move_player();
+	
+}
+
+void RDEngine::try_move_player()
+{
+	if(key[KEY_RIGHT])
+	{
+		if(offset_x > (tiles->w - this->screen_width)-2) 
+			player->x +=player->speed;
+		else
+		{
+			if(player->x < this->screen_width/2) 
+				player->x+=player->speed;
+			else
+				offset_x +=player->speed;
+		}
+	}
+
+	if(key[KEY_LEFT])
+	{
+		if(offset_x < 2) 
+			player->x -=4;
+		else
+		{
+			if(player->x > this->screen_width/2) 
+				player->x-=player->speed; 
+			else 
+				offset_x -=player->speed;
+		}
+	}
+
+	if(key[KEY_DOWN])
+	{
+		if(offset_y > (tiles->h - this->screen_height)-2) 
+			player->y +=player->speed;
+		else
+		{
+			if(player->y < this->screen_height/2) 
+				player->y+=player->speed;
+			else
+				offset_y +=player->speed;	
+		}
+	}
+
+	if(key[KEY_UP])
+	{
+		if(offset_y < 2) 
+			player->y -=player->speed;
+		else
+		{
+			if(player->y > this->screen_height/2) 
+				player->y-=player->speed;
+			else 
+				offset_y -=player->speed;	
+		}
+	}
+}
+
+void RDEngine::Render()
+{
+	masked_blit(tiles, buffer, offset_x, offset_y, 0, 0, this->screen_width, this->screen_height);
+	masked_blit(tiles, buffer, 0,0,player->x, player->y, this->tile_width, this->tile_height);
+
+	blit(buffer, screen, 0,0,0,0,this->screen_width,this->screen_height);
+	
+	clear_bitmap(buffer);
 }
 
 void RDEngine::Rest(int milliseconds)
@@ -37,66 +119,12 @@ void RDEngine::Rest(int milliseconds)
 	rest(milliseconds);
 }
 
-void RDEngine::Update()
+void RDEngine::init_viewport()
 {
-	if(key[KEY_ESC]) isQuit = true;
-
-	move_window();
+	viewport = new RDViewport(this->player->x,this->player->y,this->screen_width, this->screen_height);
 }
 
-void RDEngine::Render()
+void RDEngine::init_player()
 {
-	masked_blit(tiles, buffer, offset_x,offset_y,0,0,(tiles->w)-offset_x, (tiles->h)-offset_y);
-
-	sprintf(debug_buffer,"%d %d",offset_x, offset_y);
-
-	textout_ex(buffer, font, debug_buffer, 400,400,makecol(255,255,255),-1);
-	blit(buffer, screen, 0,0,0,0,640,480);
-	clear_bitmap(buffer);
-}
-
-void RDEngine::initBuffer()
-{
-	buffer = create_bitmap(tiles->w,tiles->h);
-	max_offset_x = buffer->w - width;
-	max_offset_y = buffer->h - height;
-}
-
-void RDEngine::move_window()
-{
-	if(key[KEY_RIGHT])
-	{
-		offset_x+=movement_speed;
-		
-	}
-
-	if(key[KEY_LEFT])
-	{
-		offset_x-=movement_speed;
-		
-	}
-
-	if(key[KEY_UP])
-	{
-		offset_y-=movement_speed;
-		
-	}
-
-	if(key[KEY_DOWN])
-	{
-		offset_y+=movement_speed;
-
-	}
-
-
-	correct_window_coordinates();
-}
-
-void RDEngine::correct_window_coordinates()
-{
-	if(offset_x < 0) offset_x = 0;
-	if(offset_y < 0) offset_y = 0;
-
-	offset_x = (offset_x > max_offset_x) ? max_offset_x : offset_x;
-	offset_y = (offset_y > max_offset_y) ? max_offset_y : offset_y;
+	player = new RDPlayer(this->screen_width/2 - this->tile_width, this->screen_height/2 - this->tile_height);
 }
