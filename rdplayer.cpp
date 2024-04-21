@@ -7,8 +7,8 @@ RDPlayer::RDPlayer(BITMAP *data, BITMAP *buffer, int x, int y)
 	this->buffer = buffer;
 	this->x = x;
 	this->y = y;
-	this->rx = this->x / 32;
-	this->ry = this->y / 32;
+	this->rx = this->x;
+	this->ry = this->y;
 	this->speed = kPlayerSpeed;
 }
 
@@ -19,6 +19,6 @@ void RDPlayer::Render()
 
 void RDPlayer::RenderDebug()
 {
-	sprintf(this->tile_position_text, "%d - %d", this->x / 32, this->y / 32);
+	sprintf(this->tile_position_text, "%d - %d", this->rx / 32, this->ry / 32);
 	textout_ex(screen, font, this->tile_position_text, 400,400,makecol(255,255,255),-1);
 }

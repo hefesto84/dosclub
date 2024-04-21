@@ -98,8 +98,9 @@ void RDEngine::try_move_player()
 	{
 		player->rx+=player->speed;
 
-		if(offset_x > (tiles->w - kWidth)-2) 
+		if(offset_x > (tiles->w - kWidth)-2){ 
 			player->x +=player->speed;
+		}
 		else
 		{
 			if(player->x < kWidth/2) 
