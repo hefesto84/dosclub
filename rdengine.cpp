@@ -28,7 +28,7 @@ void RDEngine::Init()
 	init_player();
 	init_entities();
 	init_viewport();
-	
+	init_map();
 }
 
 bool RDEngine::ShouldClose()
@@ -40,15 +40,19 @@ void RDEngine::Update()
 {
 	if(key[KEY_ESC]) isQuit = true;
 
-	try_move_player();
+	map->Update(&offset_x, &offset_y);
+
+	player->Update(map, offset_x, offset_y);
 	
+	if(player->TryGetScrollRequired(scroll_x, scroll_y))
+		update_entities(scroll_x, scroll_y);
 }
+
 
 void RDEngine::Render()
 {
-	masked_blit(tiles, buffer, offset_x, offset_y, 0, 0, kWidth, kHeight);
-	
-	render_player();
+	map->Render(0);
+	player->Render();
 	render_entities();
 
 	blit(buffer, screen, 0,0,0,0,kWidth,kHeight);
@@ -73,6 +77,11 @@ void RDEngine::init_player()
 	player = new RDPlayer(tiles, buffer, kWidth/2 - kTileWidth, kHeight/2 - kTileHeight);
 }
 
+void RDEngine::init_map()
+{
+	map = new RDMap(this->buffer, "Debug/tiles.bmp", "Debug/dungeon00.csv");
+}
+
 void RDEngine::init_entities()
 {
 	entities = (RDEntity**)malloc(3*sizeof(RDEntity*));
@@ -90,88 +99,6 @@ void RDEngine::update_entities(int x, int y)
 		entities[i]->x += x;
 		entities[i]->y += y;
 	}
-}
-
-void RDEngine::try_move_player()
-{
-	if(key[KEY_RIGHT])
-	{
-		player->rx+=player->speed;
-
-		if(offset_x > (tiles->w - kWidth)-2){ 
-			player->x +=player->speed;
-		}
-		else
-		{
-			if(player->x < kWidth/2) 
-				player->x+=player->speed;
-			else
-			{
-				offset_x +=player->speed;
-				update_entities(-player->speed, 0);
-			}
-		}
-	}
-
-	if(key[KEY_LEFT])
-	{
-		player->rx-=player->speed;
-
-		if(offset_x < 2) 
-			player->x -=player->speed;
-		else
-		{
-			if(player->x > kWidth/2) 
-				player->x-=player->speed; 
-			else 
-			{
-				offset_x -=player->speed;
-				update_entities(player->speed, 0);
-			}
-		}
-	}
-
-	if(key[KEY_DOWN])
-	{
-		player->ry+=player->speed;
-
-		if(offset_y > (tiles->h - kHeight)-2) 
-			player->y +=player->speed;
-		else
-		{
-			if(player->y < kHeight/2) 
-				player->y+=player->speed;
-			else
-			{
-				offset_y +=player->speed;	
-				update_entities(0,-player->speed);
-			}
-		}
-	}
-
-	if(key[KEY_UP])
-	{
-		player->ry-=player->speed;
-
-		if(offset_y < 2) 
-			player->y -=player->speed;
-		else
-		{
-			if(player->y > kHeight/2) 
-				player->y-=player->speed;
-			else 
-			{
-				offset_y -=player->speed;	
-				update_entities(0,player->speed);
-			}
-		}
-	}
-
-}
-
-void RDEngine::render_player()
-{
-	player->Render();
 }
 
 void RDEngine::debug_player()

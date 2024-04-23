@@ -1,0 +1,55 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx": {
+            "scale": 2.0128125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 399.6894892097501,
+                "y": 157.49107281478032
+            }
+        },
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx#overworld": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx#sprites": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx#underworld": {
+            "scaleInDock": 1
+        },
+        "underworld.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Dani/Downloads/VS98/VS98/MyProjects/rdengine/external",
+    "last.imagePath": "C:/Users/Dani/Downloads/VS98/VS98/MyProjects/rdengine/external",
+    "map.height": 16,
+    "map.lastUsedExportFilter": "Archivos CSV (*.csv)",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 16,
+    "openFiles": [
+        "underworld.tsx",
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx"
+    ],
+    "project": "dungeon00.tiled-project",
+    "recentFiles": [
+        "C:/Users/Dani/AppData/Local/Temp/19901a58-c616-46c2-8cfe-1c4d8c8362f3_Zoria Tileset (1).zip.2f3/scraps/mockup.tmx",
+        "underworld.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.useTransparentColor": true
+}
