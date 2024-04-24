@@ -12,11 +12,13 @@ private:
 	int *offset_y;
 	BITMAP *buffer;
 	BITMAP *tile_data;
-	FILE* data_path;
 	void initialize(char *tile_data_path, char *data_path);
 public:
+	int layers;
 	int width;
 	int height;
+	int rows;
+	int cols;
 	RDMap(BITMAP *buffer, char *tile_data_path, char *tile_path);
 	void Update(int *offset_x, int *offset_y);
 	void Render(int layer);

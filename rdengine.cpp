@@ -79,7 +79,7 @@ void RDEngine::init_player()
 
 void RDEngine::init_map()
 {
-	map = new RDMap(this->buffer, "Debug/tiles.bmp", "Debug/dungeon00.csv");
+	map = new RDMap(this->buffer, "Debug/tiles.bmp", "Debug/dungeon00.bin");
 }
 
 void RDEngine::init_entities()

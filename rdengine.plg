@@ -6,28 +6,28 @@
 --------------------Configuration: rdengine - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\Dani\AppData\Local\Temp\RSPA4C9.tmp" with contents
+Creating temporary file "C:\Users\Dani\AppData\Local\Temp\RSP6D70.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/rdengine.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\Users\Dani\Downloads\VS98\VS98\MyProjects\rdengine\rdplayer.cpp"
+"C:\Users\Dani\Downloads\VS98\VS98\MyProjects\rdengine\rdmap.cpp"
 ]
-Creating command line "cl.exe @C:\Users\Dani\AppData\Local\Temp\RSPA4C9.tmp" 
-Creating temporary file "C:\Users\Dani\AppData\Local\Temp\RSPA4CA.tmp" with contents
+Creating command line "cl.exe @C:\Users\Dani\AppData\Local\Temp\RSP6D70.tmp" 
+Creating temporary file "C:\Users\Dani\AppData\Local\Temp\RSP6D71.tmp" with contents
 [
 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib alld.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/rdengine.pdb" /debug /machine:I386 /out:"Debug/rdengine.exe" /pdbtype:sept 
 .\Debug\main.obj
 .\Debug\rdengine.obj
 .\Debug\rdentity.obj
+.\Debug\rdmap.obj
 .\Debug\rdplayer.obj
 .\Debug\rdviewport.obj
-.\Debug\rdmap.obj
 ]
-Creating command line "link.exe @C:\Users\Dani\AppData\Local\Temp\RSPA4CA.tmp"
+Creating command line "link.exe @C:\Users\Dani\AppData\Local\Temp\RSP6D71.tmp"
 <h3>Output Window</h3>
 Compiling...
-rdplayer.cpp
+rdmap.cpp
 Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/rdengine.bsc"  .\Debug\main.sbr .\Debug\rdengine.sbr .\Debug\rdentity.sbr .\Debug\rdplayer.sbr .\Debug\rdviewport.sbr .\Debug\rdmap.sbr"
+Creating command line "bscmake.exe /nologo /o"Debug/rdengine.bsc"  .\Debug\main.sbr .\Debug\rdengine.sbr .\Debug\rdentity.sbr .\Debug\rdmap.sbr .\Debug\rdplayer.sbr .\Debug\rdviewport.sbr"
 Creating browse info file...
 <h3>Output Window</h3>
 
